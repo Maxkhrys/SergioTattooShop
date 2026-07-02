@@ -22,18 +22,21 @@ highlight-icon language, with his fine line sub-brand
 | `npm run build`   | Production build to `./dist/`               |
 | `npm run preview` | Preview the production build locally        |
 
-## Placeholder assets
+## Assets
 
-All imagery is generated, clearly-labelled placeholder SVG art
-(`public/images/`, regenerate with `node scripts/gen-placeholders.mjs`).
-Swap in real assets by replacing files with the same names, or update
-`src/data/site.ts`. Still needed from the client:
+The hero, main gallery (black & grey / colour realism) and the full Fine
+Line gallery use real client photography in `public/images/` (`hero.jpg`,
+`bg-*.jpg`, `cr-*.jpg`, `fl-*.jpg`), wired up in `src/data/site.ts`.
+
+Cover Up, healed before/after pairs, and Sergio's studio/artist photos are
+still generated, clearly-labelled placeholder SVG art (regenerate with
+`node scripts/gen-placeholders.mjs`). Swap in real assets by replacing
+files with the same names, or update `src/data/site.ts`. Still needed from
+the client:
 
 - Real logo / icon set (wordmark currently stands in)
-- Hero shot — bold colour realism or black & grey piece
-- Main gallery photography (black & grey / colour realism / cover up)
+- Cover up gallery photography (before/after or finished pieces)
 - Healed work before/after pairs
-- Fine line gallery images
 - Sergio artist/studio photos (neon interior)
 - Client testimonials (from the IG "Feedback" highlight) — `src/data/site.ts`
 - Studio address, hours, and real WhatsApp number — `src/data/site.ts`,

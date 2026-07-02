@@ -95,20 +95,11 @@ function svg({ w, h, motif, label, sub, light = false, healed = false }) {
 </svg>`;
 }
 
+// Hero, main gallery (bg-*/cr-*) and the fine line gallery (fl-*) now use
+// real client photography dropped into public/images/ — only the assets
+// still awaited from the client are generated here.
 const P = '[ PLACEHOLDER ]';
 const files = [
-  ['hero.svg', { w: 1200, h: 1500, motif: 'rose', label: P, sub: 'HERO — BOLD COLOUR REALISM / BLACK & GREY PIECE' }],
-
-  ['bg-1.svg', { w: 900, h: 1125, motif: 'shade', label: P, sub: 'BLACK & GREY — PORTFOLIO PIECE 01' }],
-  ['bg-2.svg', { w: 900, h: 1125, motif: 'machine', label: P, sub: 'BLACK & GREY — PORTFOLIO PIECE 02' }],
-  ['bg-3.svg', { w: 900, h: 1125, motif: 'rose', label: P, sub: 'BLACK & GREY — PORTFOLIO PIECE 03' }],
-  ['bg-4.svg', { w: 900, h: 1125, motif: 'shade', label: P, sub: 'BLACK & GREY — PORTFOLIO PIECE 04' }],
-
-  ['cr-1.svg', { w: 900, h: 1125, motif: 'drop', label: P, sub: 'COLOUR REALISM — PORTFOLIO PIECE 01' }],
-  ['cr-2.svg', { w: 900, h: 1125, motif: 'rose', label: P, sub: 'COLOUR REALISM — PORTFOLIO PIECE 02' }],
-  ['cr-3.svg', { w: 900, h: 1125, motif: 'drop', label: P, sub: 'COLOUR REALISM — PORTFOLIO PIECE 03' }],
-  ['cr-4.svg', { w: 900, h: 1125, motif: 'machine', label: P, sub: 'COLOUR REALISM — PORTFOLIO PIECE 04' }],
-
   ['cu-1.svg', { w: 900, h: 1125, motif: 'triangle', label: P, sub: 'COVER UP — BEFORE / AFTER PIECE 01' }],
   ['cu-2.svg', { w: 900, h: 1125, motif: 'triangle', label: P, sub: 'COVER UP — BEFORE / AFTER PIECE 02' }],
   ['cu-3.svg', { w: 900, h: 1125, motif: 'machine', label: P, sub: 'COVER UP — BEFORE / AFTER PIECE 03' }],
@@ -120,13 +111,6 @@ const files = [
   ['healed-2-healed.svg', { w: 1000, h: 1000, motif: 'shade', label: P, sub: 'HEALED WORK 02 — FULLY HEALED', healed: 'HEALED — 18 MONTHS' }],
   ['healed-3-fresh.svg', { w: 1000, h: 1000, motif: 'drop', label: P, sub: 'HEALED WORK 03 — FRESH', healed: 'FRESH — DAY 0' }],
   ['healed-3-healed.svg', { w: 1000, h: 1000, motif: 'drop', label: P, sub: 'HEALED WORK 03 — FULLY HEALED', healed: 'HEALED — 2 YEARS' }],
-
-  ['fl-1.svg', { w: 900, h: 1125, motif: 'leaf', label: P, sub: 'FINE LINE — BOTANICAL 01', light: true }],
-  ['fl-2.svg', { w: 900, h: 1125, motif: 'moonsun', label: P, sub: 'FINE LINE — MINIMAL 02', light: true }],
-  ['fl-3.svg', { w: 900, h: 1125, motif: 'clover', label: P, sub: 'FINE LINE — MINIMAL 03', light: true }],
-  ['fl-4.svg', { w: 900, h: 1125, motif: 'rose', label: P, sub: 'FINE LINE — BOTANICAL 04', light: true }],
-  ['fl-5.svg', { w: 900, h: 1125, motif: 'leaf', label: P, sub: 'FINE LINE — BOTANICAL 05', light: true }],
-  ['fl-6.svg', { w: 900, h: 1125, motif: 'heart', label: P, sub: 'FINE LINE — MINIMAL 06', light: true }],
 
   ['about-sergio.svg', { w: 1000, h: 1250, motif: 'machine', label: P, sub: 'SERGIO — ARTIST PORTRAIT / AT WORK, NEON STUDIO' }],
   ['studio-wide.svg', { w: 1600, h: 1000, motif: 'bubble', label: P, sub: 'STUDIO — NEON-LIT INTERIOR, WIDE SHOT' }],
