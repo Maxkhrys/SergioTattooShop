@@ -2,51 +2,54 @@
 import HighlightIcon from './HighlightIcon.astro';
 ---
 
-<section id="top" class="relative flex min-h-svh items-center overflow-hidden pt-18">
+<section id="top" class="relative flex min-h-svh items-center justify-center overflow-hidden pt-18">
   <div class="absolute inset-0">
     <img
-      src="/images/hero.jpg"
+      src="/images/bg-11.jpg"
       alt=""
-      class="h-full w-full object-cover opacity-70"
+      class="h-full w-full object-cover brightness-90 contrast-110 saturate-50"
+      style="object-position: 50% 6%;"
       fetchpriority="high"
     />
-    <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/30"></div>
-    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent"></div>
+    <!-- Symmetric vignette: darkens the edges to frame the piece, plus a
+         soft central scrim so the text block stays legible over it -->
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/40 to-ink"></div>
+    <div
+      class="absolute inset-0"
+      style="background: radial-gradient(ellipse 60% 55% at 50% 46%, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.7) 100%);"
+    >
+    </div>
   </div>
 
-  <div class="relative mx-auto w-full max-w-7xl px-5 py-24 md:px-8">
-    <p class="section-kicker mb-6" data-reveal>
+  <div class="relative mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-24 text-center md:px-8">
+    <p class="section-kicker mb-7 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]" data-reveal>
       Dublin · Tattoo Artist
     </p>
 
     <!-- [PLACEHOLDER: real logo/icon set — supplied separately. Wordmark below stands in for the brand mark.] -->
     <h1
-      class="font-display max-w-4xl text-6xl leading-[0.95] font-semibold tracking-tight uppercase sm:text-7xl lg:text-8xl"
+      class="font-display text-6xl leading-[0.95] font-medium tracking-tight uppercase drop-shadow-[0_4px_28px_rgba(0,0,0,0.85)] sm:text-7xl lg:text-8xl"
       data-reveal
       data-reveal-delay="0.1"
     >
-      Sergio<br />
-      <span class="relative inline-block">
-        Furlan
-        <span class="absolute -bottom-2 left-0 h-[3px] w-full bg-blood shadow-[0_0_16px_rgba(224,32,42,0.8)]"></span>
-      </span>
+      Sergio Furlan
     </h1>
 
-    <p
-      class="font-display mt-10 text-xl font-light tracking-[0.3em] text-bone-dim uppercase md:text-2xl"
-      data-reveal
-      data-reveal-delay="0.2"
-    >
-      Living art on skin
-    </p>
+    <div class="mt-7 flex items-center gap-4" data-reveal data-reveal-delay="0.18">
+      <span class="h-px w-10 bg-blood/70 shadow-[0_0_10px_rgba(224,32,42,0.7)]"></span>
+      <p class="font-display text-lg font-light tracking-[0.35em] text-bone-dim uppercase drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] md:text-xl">
+        Living art on skin
+      </p>
+      <span class="h-px w-10 bg-blood/70 shadow-[0_0_10px_rgba(224,32,42,0.7)]"></span>
+    </div>
 
-    <div class="mt-12 flex flex-wrap items-center gap-4" data-reveal data-reveal-delay="0.3">
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-4" data-reveal data-reveal-delay="0.28">
       <a href="#booking" class="btn-primary">Book a Consultation</a>
       <a href="#gallery" class="btn-ghost">View Work</a>
     </div>
 
     <!-- Immediate specialty markers — the red-icon-in-black-circle system -->
-    <ul class="mt-20 flex flex-wrap gap-x-12 gap-y-8" data-reveal data-reveal-delay="0.4">
+    <ul class="mt-20 flex flex-wrap justify-center gap-x-12 gap-y-8" data-reveal data-reveal-delay="0.38">
       {
         [
           { icon: 'shade', label: 'Black & Grey' },
@@ -55,7 +58,7 @@ import HighlightIcon from './HighlightIcon.astro';
         ].map(({ icon, label }) => (
           <li class="flex items-center gap-4">
             <HighlightIcon icon={icon as 'shade' | 'drop' | 'triangle'} size="sm" />
-            <span class="font-display text-[0.78rem] tracking-[0.24em] uppercase text-bone-dim">
+            <span class="font-display text-[0.78rem] tracking-[0.24em] text-bone-dim uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
               {label}
             </span>
           </li>
