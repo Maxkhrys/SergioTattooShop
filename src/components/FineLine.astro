@@ -1,5 +1,7 @@
 ---
 import { fineLineGallery, site } from '../data/site';
+
+const INITIAL_COUNT = 9;
 ---
 
 <!--
@@ -23,18 +25,37 @@ import { fineLineGallery, site } from '../data/site';
       </p>
     </div>
 
-    <!-- [PLACEHOLDER: fine line gallery images] -->
-    <div class="mt-20 grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-8">
+    <div
+      class="mt-20 columns-2 gap-5 md:columns-3 md:gap-8"
+      data-expandable
+      data-initial-count={INITIAL_COUNT}
+    >
       {
         fineLineGallery.map((item, i) => (
-          <figure class="gallery-piece aspect-[4/5]" data-reveal-slow data-reveal-delay={String((i % 3) * 0.18)}>
-            <img src={item.src} alt={item.alt} class="h-full w-full object-cover" loading="lazy" decoding="async" />
+          <figure
+            class:list={['gallery-piece mb-5 break-inside-avoid md:mb-8', { hidden: i >= INITIAL_COUNT }]}
+            data-expand-item
+            data-reveal-slow
+            data-reveal-delay={String((i % 3) * 0.18)}
+          >
+            <img src={item.src} alt={item.alt} class="h-auto w-full object-cover" loading="lazy" decoding="async" />
           </figure>
         ))
       }
     </div>
 
-    <div class="mt-16 text-center" data-reveal-slow>
+    <div class="mt-16 flex flex-col items-center gap-5 text-center" data-reveal-slow>
+      {
+        fineLineGallery.length > INITIAL_COUNT && (
+          <button
+            type="button"
+            class="font-display border border-fineline-ink/20 px-8 py-3 text-[0.75rem] font-light tracking-[0.2em] text-fineline-ink/70 uppercase transition-colors duration-300 hover:border-blood-dim/50 hover:text-fineline-ink"
+            data-expand-toggle
+          >
+            View Full Collection (<span data-expand-count>+{fineLineGallery.length - INITIAL_COUNT}</span>)
+          </button>
+        )
+      }
       <p class="text-sm font-light text-fineline-ink/60">
         Dedicated fine line profile —
         <a

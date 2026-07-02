@@ -80,9 +80,55 @@ if (!prefersReducedMotion) {
     .forEach((el) => el.removeAttribute('data-reveal'));
 }
 
+/* ---------- Expandable image grids (gallery + fine line) ---------- */
+// Both grids ship with only the first N pieces visible so the page doesn't
+// read as a wall of images; "View Full ..." reveals the rest in place.
+document.querySelectorAll<HTMLElement>('[data-expandable]').forEach((container) => {
+  const toggle = container.parentElement?.querySelector<HTMLButtonElement>('[data-expand-toggle]')
+    ?? container.nextElementSibling?.querySelector<HTMLButtonElement>('[data-expand-toggle]');
+  if (!toggle) return;
+
+  const hiddenCountLabel = toggle.querySelector('[data-expand-count]');
+  const collapsedLabel = toggle.textContent?.trim().split('(')[0].trim() ?? 'View Full Portfolio';
+  const hiddenCount = hiddenCountLabel?.textContent ?? '';
+
+  toggle.addEventListener('click', () => {
+    const isExpanded = toggle.dataset.expanded === 'true';
+    const items = Array.from(container.querySelectorAll<HTMLElement>('[data-expand-item].hidden, [data-expand-item][data-was-hidden]'));
+
+    if (!isExpanded) {
+      items.forEach((item) => {
+        item.dataset.wasHidden = 'true';
+        item.classList.remove('hidden');
+      });
+      if (!prefersReducedMotion) {
+        gsap.fromTo(
+          items,
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.8, stagger: 0.05, ease: 'power3.out' },
+        );
+      }
+      toggle.textContent = 'Show Less';
+      toggle.dataset.expanded = 'true';
+    } else {
+      items.forEach((item) => {
+        if (item.dataset.wasHidden) {
+          item.classList.add('hidden');
+          delete item.dataset.wasHidden;
+        }
+      });
+      toggle.textContent = `${collapsedLabel} (${hiddenCount})`;
+      toggle.dataset.expanded = 'false';
+      container.scrollIntoView({ block: 'start', behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    }
+    ScrollTrigger.refresh();
+  });
+});
+
 /* ---------- Gallery filter ---------- */
 const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
 const galleryItems = document.querySelectorAll<HTMLElement>('[data-category]');
+const galleryExpandToggle = document.querySelector<HTMLButtonElement>('#gallery [data-expand-toggle]');
 
 filterButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
@@ -90,6 +136,12 @@ filterButtons.forEach((btn) => {
     filterButtons.forEach((b) =>
       b.setAttribute('aria-pressed', String(b === btn)),
     );
+
+    // Filtering needs the full set available, not just the capped preview.
+    if (filter !== 'all' && galleryExpandToggle && galleryExpandToggle.dataset.expanded !== 'true') {
+      galleryExpandToggle.click();
+    }
+
     galleryItems.forEach((item) => {
       const show = filter === 'all' || item.dataset.category === filter;
       item.classList.toggle('hidden', !show);
@@ -102,6 +154,15 @@ filterButtons.forEach((btn) => {
       );
     }
     ScrollTrigger.refresh();
+  });
+});
+
+/* ---------- Specialty cards jump into a pre-filtered gallery ---------- */
+document.querySelectorAll<HTMLAnchorElement>('[data-filter-jump]').forEach((link) => {
+  link.addEventListener('click', () => {
+    const target = link.dataset.filterJump;
+    const matchingFilter = Array.from(filterButtons).find((b) => b.dataset.filter === target);
+    matchingFilter?.click();
   });
 });
 

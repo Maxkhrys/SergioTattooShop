@@ -7,7 +7,6 @@ const specialties = [
     title: 'Black & Grey',
     description:
       'Depth, contrast and smooth shading — portraits, statues and dark surrealism built to hold their weight for decades.',
-    pieces: ['/images/bg-1.jpg', '/images/bg-2.jpg'],
     filter: 'black-grey',
   },
   {
@@ -15,7 +14,6 @@ const specialties = [
     title: 'Colour Realism',
     description:
       'Saturated, lifelike colour work — animals, portraits and nature pieces engineered for vibrancy that survives the heal.',
-    pieces: ['/images/cr-1.jpg', '/images/cr-2.jpg'],
     filter: 'colour-realism',
   },
   {
@@ -23,7 +21,6 @@ const specialties = [
     title: 'Cover Up',
     description:
       'Old ink, regretted names, faded work — redesigned and buried under a piece you actually want to show off.',
-    pieces: ['/images/cu-1.svg', '/images/cu-2.svg'],
     filter: 'cover-up',
   },
 ] as const;
@@ -36,29 +33,23 @@ const specialties = [
       <h2 class="section-title text-4xl md:text-5xl">Three pillars.<br />One hand.</h2>
     </div>
 
-    <div class="grid gap-10 md:grid-cols-3 md:gap-8">
+    <div class="grid gap-px overflow-hidden rounded-sm bg-white/5 md:grid-cols-3">
       {
         specialties.map((s, i) => (
           <article
-            class="group flex flex-col rounded-sm border border-white/5 bg-ink-soft p-8 transition-colors duration-500 hover:border-blood/30"
+            class="group flex flex-col bg-ink p-10 transition-colors duration-500 hover:bg-ink-soft"
             data-reveal
             data-reveal-delay={String(i * 0.12)}
           >
             <HighlightIcon icon={s.icon} size="md" />
-            <h3 class="font-display mt-7 text-2xl font-medium tracking-wide uppercase">{s.title}</h3>
-            <p class="mt-4 text-[0.95rem] leading-relaxed text-bone-dim">{s.description}</p>
-            <div class="mt-8 grid grid-cols-2 gap-3">
-              {s.pieces.map((src) => (
-                <a href="#gallery" class="gallery-piece block aspect-[4/5]" aria-label={`View ${s.title} work in the gallery`}>
-                  <img src={src} alt="" class="h-full w-full object-cover" loading="lazy" decoding="async" />
-                </a>
-              ))}
-            </div>
+            <h3 class="font-display mt-8 text-2xl font-medium tracking-wide uppercase">{s.title}</h3>
+            <p class="mt-4 flex-1 text-[0.95rem] leading-relaxed text-bone-dim">{s.description}</p>
             <a
               href="#gallery"
-              class="font-display mt-7 inline-flex items-center gap-2 text-[0.75rem] tracking-[0.2em] uppercase text-blood transition-colors duration-300 hover:text-bone"
+              data-filter-jump={s.filter}
+              class="font-display mt-8 inline-flex items-center gap-2 text-[0.75rem] tracking-[0.2em] uppercase text-blood transition-colors duration-300 hover:text-bone"
             >
-              See the work <span aria-hidden="true">→</span>
+              See the work <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
           </article>
         ))

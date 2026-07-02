@@ -3,26 +3,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import Specialties from '../components/Specialties.astro';
+import Statement from '../components/Statement.astro';
 import Gallery from '../components/Gallery.astro';
-import HealedWork from '../components/HealedWork.astro';
-import FineLine from '../components/FineLine.astro';
-import About from '../components/About.astro';
 import Testimonials from '../components/Testimonials.astro';
+import HealedWork from '../components/HealedWork.astro';
+import About from '../components/About.astro';
+import FineLine from '../components/FineLine.astro';
 import Studio from '../components/Studio.astro';
 import Booking from '../components/Booking.astro';
 import Footer from '../components/Footer.astro';
 ---
 
+<!--
+  Sections deliberately alternate image-heavy and text-heavy so the page
+  doesn't read as one long wall of tattoo photos: hero (image) → specialty
+  cards (text) → statement (text) → gallery (image) → testimonials (text)
+  → healed work (image) → about (text/1 image) → fine line (image, tonal
+  break) → studio (image) → booking (form).
+-->
 <BaseLayout>
   <Nav />
   <main>
     <Hero />
     <Specialties />
+    <Statement />
     <Gallery />
-    <HealedWork />
-    <FineLine />
-    <About />
     <Testimonials />
+    <HealedWork />
+    <About />
+    <FineLine />
     <Studio />
     <Booking />
   </main>

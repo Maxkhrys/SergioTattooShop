@@ -7,6 +7,8 @@ const filters = [
   { id: 'colour-realism', label: 'Colour Realism' },
   { id: 'cover-up', label: 'Cover Up' },
 ];
+
+const INITIAL_COUNT = 9;
 ---
 
 <section id="gallery" class="relative py-28 md:py-36">
@@ -29,19 +31,22 @@ const filters = [
       </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+    <!-- Editorial masonry: real photo aspect ratios instead of a uniform
+         grid, so the wall of tattoos reads as curated rather than dumped -->
+    <div class="columns-1 gap-5 sm:columns-2 lg:columns-3 lg:gap-7" data-expandable data-initial-count={INITIAL_COUNT}>
       {
         gallery.map((item, i) => (
           <figure
-            class="gallery-piece aspect-[4/5]"
+            class:list={['gallery-piece mb-5 break-inside-avoid lg:mb-7', { hidden: i >= INITIAL_COUNT }]}
             data-category={item.category}
+            data-expand-item
             data-reveal
             data-reveal-delay={String((i % 3) * 0.1)}
           >
             <img
               src={item.src}
               alt={item.alt}
-              class="h-full w-full object-cover"
+              class="h-auto w-full object-cover"
               loading="lazy"
               decoding="async"
             />
@@ -50,14 +55,23 @@ const filters = [
       }
     </div>
 
-    <p class="mt-12 text-center text-sm text-bone-dim" data-reveal>
-      Full portfolio on Instagram —
-      <a
-        href="https://www.instagram.com/sergiofurlantattoo/"
-        class="text-blood underline-offset-4 transition-colors hover:text-bone hover:underline"
-        rel="noopener"
-        target="_blank">@sergiofurlantattoo</a
-      >
-    </p>
+    <div class="mt-14 flex flex-col items-center gap-6" data-reveal>
+      {
+        gallery.length > INITIAL_COUNT && (
+          <button type="button" class="btn-ghost" data-expand-toggle>
+            View Full Portfolio (<span data-expand-count>+{gallery.length - INITIAL_COUNT}</span>)
+          </button>
+        )
+      }
+      <p class="text-center text-sm text-bone-dim">
+        More on Instagram —
+        <a
+          href="https://www.instagram.com/sergiofurlantattoo/"
+          class="text-blood underline-offset-4 transition-colors hover:text-bone hover:underline"
+          rel="noopener"
+          target="_blank">@sergiofurlantattoo</a
+        >
+      </p>
+    </div>
   </div>
 </section>
