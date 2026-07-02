@@ -1,0 +1,73 @@
+---
+const links = [
+  { href: '#specialties', label: 'Specialties' },
+  { href: '#gallery', label: 'Gallery' },
+  { href: '#healed', label: 'Healed Work' },
+  { href: '#fine-line', label: 'Fine Line' },
+  { href: '#about', label: 'About' },
+  { href: '#studio', label: 'Studio' },
+];
+---
+
+<header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-ink/85 backdrop-blur-md">
+  <nav class="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 md:px-8" aria-label="Main">
+    <a href="#top" class="font-display text-lg font-semibold tracking-[0.22em] uppercase">
+      Sergio<span class="text-blood">.</span>Furlan
+    </a>
+
+    <ul class="hidden items-center gap-8 lg:flex">
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="font-display text-[0.72rem] font-normal tracking-[0.22em] uppercase text-bone-dim transition-colors duration-300 hover:text-bone"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a
+          href="#booking"
+          class="font-display border border-blood/70 px-5 py-2.5 text-[0.72rem] tracking-[0.22em] uppercase transition-all duration-300 hover:bg-blood hover:shadow-[0_0_20px_rgba(224,32,42,0.4)]"
+        >
+          Book Now
+        </a>
+      </li>
+    </ul>
+
+    <button
+      id="nav-toggle"
+      class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Toggle menu"
+    >
+      <span class="h-px w-6 bg-bone"></span>
+      <span class="h-px w-6 bg-blood"></span>
+      <span class="h-px w-6 bg-bone"></span>
+    </button>
+  </nav>
+
+  <div id="mobile-nav" class="hidden border-t border-white/5 bg-ink px-5 pb-8 pt-4 lg:hidden">
+    <ul class="flex flex-col gap-4">
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="font-display block py-1 text-sm tracking-[0.22em] uppercase text-bone-dim"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-2">
+        <a href="#booking" class="btn-primary w-full">Book Now</a>
+      </li>
+    </ul>
+  </div>
+</header>

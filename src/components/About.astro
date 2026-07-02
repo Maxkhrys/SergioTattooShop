@@ -1,0 +1,60 @@
+---
+---
+
+<section id="about" class="relative py-28 md:py-36">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <div class="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+      <!-- [PLACEHOLDER: Sergio studio/artist photo — neon interior] -->
+      <div class="gallery-piece aspect-[4/5] max-w-xl" data-reveal>
+        <img
+          src="/images/about-sergio.svg"
+          alt="Sergio Furlan at work in his neon-lit Dublin studio — placeholder for artist portrait"
+          class="h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div data-reveal data-reveal-delay="0.15">
+        <p class="section-kicker mb-4">About</p>
+        <h2 class="section-title text-4xl md:text-5xl">Art. Attitude.<br />Identity.</h2>
+
+        <div class="mt-8 space-y-5 text-[0.98rem] leading-relaxed text-bone-dim">
+          <p>
+            [PLACEHOLDER: Sergio's real bio — background, years tattooing,
+            journey to Dublin.] Sergio Furlan builds tattoos the way a painter
+            builds a canvas — layered, deliberate, made to last. His name was
+            made on black &amp; grey depth and colour realism that stays
+            saturated long after it heals.
+          </p>
+          <p>
+            It's the cover up work that says the most about how he operates.
+            Taking a tattoo someone has regretted for years and turning it into
+            the piece they lead with takes more than technique — it takes
+            trust, honest consultation, and a designer's eye for what the skin
+            will actually allow. That trust is the core of the studio.
+          </p>
+          <p>
+            Every piece starts with a conversation: your idea, your placement,
+            your story — then his drawing. No flash-rack shortcuts.
+          </p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-3 gap-6 border-t border-white/10 pt-8">
+          {
+            [
+              { stat: '10+', label: 'Years tattooing' },
+              { stat: '260+', label: 'Pieces published' },
+              { stat: 'Dublin', label: 'Private studio' },
+            ].map(({ stat, label }) => (
+              <div>
+                <p class="font-display text-3xl font-medium text-blood">{stat}</p>
+                <p class="mt-1 text-[0.72rem] tracking-[0.18em] uppercase text-bone-dim">{label}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

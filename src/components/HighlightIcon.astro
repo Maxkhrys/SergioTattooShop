@@ -1,0 +1,56 @@
+---
+/**
+ * Recreates Sergio's Instagram highlight-icon language: a thin red
+ * line-art glyph glowing inside a black circle. Used as the recurring
+ * motif for specialties and trust markers site-wide.
+ */
+interface Props {
+  icon: 'shade' | 'drop' | 'triangle' | 'leaf' | 'heart' | 'bubble';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const { icon, size = 'md', class: className = '' } = Astro.props;
+
+const sizes = {
+  sm: 'w-12 h-12',
+  md: 'w-16 h-16 md:w-20 md:h-20',
+  lg: 'w-20 h-20 md:w-24 md:h-24',
+};
+
+const glyphs: Record<Props['icon'], string> = {
+  // Black & grey — half-shaded circle
+  shade: `<circle cx="50" cy="50" r="28"/>
+    <path d="M50 22 A28 28 0 0 0 50 78"/>
+    <path d="M39 26 L39 74 M32 32 L32 68 M27 40 L27 60"/>`,
+  // Colour realism — ink drop
+  drop: `<path d="M50 18 C50 18 27 47 27 63 a23 23 0 0 0 46 0 C73 47 50 18 50 18 Z"/>
+    <path d="M39 61 a11 11 0 0 0 9 13"/>`,
+  // Cover up — warning triangle (mirrors his IG highlight)
+  triangle: `<path d="M50 22 L82 76 L18 76 Z"/>
+    <path d="M50 40 L50 58"/>
+    <circle cx="50" cy="66" r="1.8" fill="currentColor"/>`,
+  // Fine line — sprouting leaf (mirrors his IG highlight)
+  leaf: `<path d="M50 82 L50 44"/>
+    <path d="M50 54 C36 54 26 44 26 28 C42 28 52 38 50 54 Z"/>
+    <path d="M50 44 C64 44 74 34 74 20 C58 20 48 30 50 44 Z"/>`,
+  // Healed — heart (mirrors his IG highlight)
+  heart: `<path d="M50 78 C22 58 18 40 28 30 C36 22 48 26 50 36 C52 26 64 22 72 30 C82 40 78 58 50 78 Z"/>`,
+  // Feedback — speech bubble with heart (mirrors his IG highlight)
+  bubble: `<path d="M26 28 H74 A6 6 0 0 1 80 34 V58 A6 6 0 0 1 74 64 H48 L36 76 V64 H26 A6 6 0 0 1 20 58 V34 A6 6 0 0 1 26 28 Z"/>
+    <path d="M42 52 C38 48 38 44 41 42 C44 40 47 42 47 45 C47 42 50 40 53 42 C56 44 56 48 52 52 L47 56 Z"/>`,
+};
+---
+
+<span class={`highlight-icon ${sizes[size]} ${className}`} data-icon-glow>
+  <svg
+    viewBox="0 0 100 100"
+    class="h-1/2 w-1/2"
+    fill="none"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    set:html={glyphs[icon]}
+  />
+</span>

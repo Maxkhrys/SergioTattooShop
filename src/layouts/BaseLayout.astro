@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Sergio Furlan — Tattoo Artist Dublin | Black & Grey, Colour Realism, Cover Up & Fine Line',
+  description = 'Sergio Furlan is a Dublin tattoo artist specialising in black & grey, colour realism and cover up tattoos, with a dedicated fine line studio practice. Living art on skin — book a consultation.',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // Gate reveal-hiding CSS on JS actually running, so content is never
+      // stuck invisible if scripts fail to load.
+      document.documentElement.classList.add('js');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="tattoo artist Dublin, colour realism tattoo Dublin, cover up tattoo Dublin, fine line tattoo Dublin, black and grey tattoo Dublin"
+    />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/images/hero.svg', Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap"
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'TattooParlor',
+        name: 'Sergio Furlan Tattoo',
+        description,
+        url: Astro.site?.toString(),
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Dublin',
+          addressCountry: 'IE',
+        },
+        sameAs: [
+          'https://www.instagram.com/sergiofurlantattoo/',
+          'https://www.instagram.com/sergiofurlanfineline/',
+        ],
+      })}
+    />
+  </head>
+  <body class="bg-ink text-bone">
+    <slot />
+    <script src="../scripts/main.ts"></script>
+  </body>
+</html>

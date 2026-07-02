@@ -1,0 +1,62 @@
+---
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/5 bg-ink py-16">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <div class="grid gap-12 md:grid-cols-4">
+      <div class="md:col-span-2">
+        <p class="font-display text-xl font-semibold tracking-[0.22em] uppercase">
+          Sergio<span class="text-blood">.</span>Furlan
+        </p>
+        <p class="mt-3 font-display text-[0.75rem] tracking-[0.28em] uppercase text-bone-dim">
+          Living art on skin
+        </p>
+        <p class="mt-6 max-w-sm text-sm leading-relaxed text-bone-dim">
+          Black &amp; grey, colour realism and cover up tattoos in Dublin —
+          with a dedicated fine line practice.
+        </p>
+        <a href="#booking" class="btn-primary mt-8">Book a Consultation</a>
+      </div>
+
+      <div>
+        <p class="field-label">Instagram</p>
+        <ul class="mt-4 space-y-3 text-sm">
+          <li>
+            <a href={site.instagramMain} class="text-bone-dim transition-colors hover:text-blood" rel="noopener" target="_blank">
+              @sergiofurlantattoo
+            </a>
+            <span class="block text-[0.7rem] tracking-[0.1em] uppercase text-bone-dim/60">Main — realism &amp; cover up</span>
+          </li>
+          <li>
+            <a href={site.instagramFineLine} class="text-bone-dim transition-colors hover:text-blood" rel="noopener" target="_blank">
+              @sergiofurlanfineline
+            </a>
+            <span class="block text-[0.7rem] tracking-[0.1em] uppercase text-bone-dim/60">Fine line only</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="field-label">Visit</p>
+        <p class="mt-4 text-sm leading-relaxed text-bone-dim">
+          [PLACEHOLDER: studio address]<br />Dublin, Ireland
+        </p>
+        <nav class="mt-6" aria-label="Footer">
+          <ul class="space-y-2 text-sm">
+            <li><a href="#gallery" class="text-bone-dim transition-colors hover:text-bone">Gallery</a></li>
+            <li><a href="#fine-line" class="text-bone-dim transition-colors hover:text-bone">Fine Line</a></li>
+            <li><a href="#booking" class="text-bone-dim transition-colors hover:text-bone">Booking</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 text-[0.72rem] tracking-[0.12em] uppercase text-bone-dim/60 sm:flex-row">
+      <p>© {year} Sergio Furlan Tattoo — Dublin</p>
+      <p>Art · Attitude · Identity</p>
+    </div>
+  </div>
+</footer>

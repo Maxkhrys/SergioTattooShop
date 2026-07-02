@@ -1,0 +1,63 @@
+---
+import { gallery } from '../data/site';
+
+const filters = [
+  { id: 'all', label: 'All Work' },
+  { id: 'black-grey', label: 'Black & Grey' },
+  { id: 'colour-realism', label: 'Colour Realism' },
+  { id: 'cover-up', label: 'Cover Up' },
+];
+---
+
+<section id="gallery" class="relative py-28 md:py-36">
+  <div class="blood-divider mx-auto mb-28 max-w-4xl md:mb-36"></div>
+
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <div class="mb-12 flex flex-wrap items-end justify-between gap-8" data-reveal>
+      <div class="max-w-2xl">
+        <p class="section-kicker mb-4">Portfolio</p>
+        <h2 class="section-title text-4xl md:text-5xl">The work speaks first</h2>
+      </div>
+      <div class="flex flex-wrap gap-3" role="group" aria-label="Filter gallery by specialty">
+        {
+          filters.map((f, i) => (
+            <button class="filter-pill" data-filter={f.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+              {f.label}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+      {
+        gallery.map((item, i) => (
+          <figure
+            class="gallery-piece aspect-[4/5]"
+            data-category={item.category}
+            data-reveal
+            data-reveal-delay={String((i % 3) * 0.1)}
+          >
+            <img
+              src={item.src}
+              alt={item.alt}
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        ))
+      }
+    </div>
+
+    <p class="mt-12 text-center text-sm text-bone-dim" data-reveal>
+      Full portfolio on Instagram —
+      <a
+        href="https://www.instagram.com/sergiofurlantattoo/"
+        class="text-blood underline-offset-4 transition-colors hover:text-bone hover:underline"
+        rel="noopener"
+        target="_blank">@sergiofurlantattoo</a
+      >
+    </p>
+  </div>
+</section>

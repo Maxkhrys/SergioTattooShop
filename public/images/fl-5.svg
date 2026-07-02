@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#f0ede7"/>
+      <stop offset="100%" stop-color="#e7e3db"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <rect width="900" height="1125" fill="url(#g)"/>
+  <rect x="25.2" y="25.2" width="849.6" height="1074.6" fill="none" stroke="rgba(28,26,23,0.25)" stroke-width="1.5"/>
+  
+  
+  <g transform="translate(342 387) scale(2.16)" fill="none" stroke="#2a2723" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    
+    <path d="M50 82 C50 82 50 52 50 44"/>
+    <path d="M50 52 C36 52 26 42 26 26 C42 26 52 36 50 52 Z"/>
+    <path d="M50 44 C64 44 74 34 74 20 C58 20 48 30 50 44 Z"/>
+  </g>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="450" y="810" fill="rgba(28,26,23,0.55)" font-size="30.6" letter-spacing="4">[ PLACEHOLDER ]</text>
+    <text x="450" y="859.5" fill="rgba(28,26,23,0.35)" font-size="21.6" letter-spacing="2">FINE LINE — BOTANICAL 05</text>
+  </g>
+</svg>

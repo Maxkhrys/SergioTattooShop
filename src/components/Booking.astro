@@ -1,0 +1,100 @@
+---
+import { site } from '../data/site';
+---
+
+<section id="booking" class="relative bg-ink-soft py-28 md:py-36">
+  <div class="blood-divider mx-auto mb-20 max-w-4xl"></div>
+
+  <div class="mx-auto max-w-3xl px-5 md:px-8">
+    <div class="mb-14 text-center" data-reveal>
+      <p class="section-kicker mb-4">Booking</p>
+      <h2 class="section-title text-4xl md:text-5xl">Start your piece</h2>
+      <p class="mx-auto mt-6 max-w-xl text-[0.95rem] leading-relaxed text-bone-dim">
+        Tell me what you're thinking — concept, placement, size. I'll come back
+        with availability, an honest read on what will work, and a plan.
+      </p>
+    </div>
+
+    <form id="booking-form" class="space-y-6" data-reveal novalidate>
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div>
+          <label class="field-label" for="bf-name">Name</label>
+          <input class="field-input" type="text" id="bf-name" name="name" required autocomplete="name" />
+        </div>
+        <div>
+          <label class="field-label" for="bf-contact">Email or Phone</label>
+          <input class="field-input" type="text" id="bf-contact" name="contact" required autocomplete="email" />
+        </div>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-3">
+        <div>
+          <label class="field-label" for="bf-style">Style</label>
+          <!-- name must not be "style": named form controls shadow form.style, which breaks GSAP -->
+          <select class="field-input" id="bf-style" name="tattoo-style" required>
+            <option value="">Select…</option>
+            <option>Black & Grey</option>
+            <option>Colour Realism</option>
+            <option>Cover Up</option>
+            <option>Fine Line</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label" for="bf-placement">Placement</label>
+          <input class="field-input" type="text" id="bf-placement" name="placement" placeholder="e.g. forearm, back" />
+        </div>
+        <div>
+          <label class="field-label" for="bf-size">Approx. Size</label>
+          <input class="field-input" type="text" id="bf-size" name="size" placeholder="e.g. 15cm, half sleeve" />
+        </div>
+      </div>
+
+      <div>
+        <label class="field-label" for="bf-concept">Tattoo Concept</label>
+        <textarea
+          class="field-input min-h-32 resize-y"
+          id="bf-concept"
+          name="concept"
+          rows="5"
+          required
+          placeholder="Describe the idea — subject, mood, references, and whether it's covering existing work."></textarea>
+      </div>
+
+      <div>
+        <span class="field-label">Reference Images</span>
+        <!-- [PLACEHOLDER: wire file upload to form backend when booking endpoint is confirmed] -->
+        <label
+          for="bf-refs"
+          class="flex cursor-pointer items-center justify-center gap-3 rounded-xs border border-dashed border-white/20 bg-ink px-4 py-8 text-sm text-bone-dim transition-colors duration-300 hover:border-blood/50"
+        >
+          <svg class="h-5 w-5 stroke-blood" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 16V4m0 0L7 9m5-5l5 5M4 20h16" />
+          </svg>
+          Drop reference images here or tap to upload
+        </label>
+        <input class="sr-only" type="file" id="bf-refs" name="references" accept="image/*" multiple />
+      </div>
+
+      <div class="flex flex-col items-center gap-5 pt-4">
+        <button type="submit" class="btn-primary w-full sm:w-auto sm:min-w-72">Request Consultation</button>
+        <p class="text-[0.72rem] tracking-[0.14em] uppercase text-bone-dim">— or —</p>
+        <!-- Secondary channel: kept deliberately quieter than the form CTA -->
+        <a href={site.whatsapp} class="btn-ghost w-full sm:w-auto" rel="noopener" target="_blank">
+          <svg class="h-4 w-4 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.6 8.6 0 0 1-4-1L3 20l1.2-5.4a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 11.6 2.2 8.4 8.4 0 0 1 21 11.5Z" />
+          </svg>
+          Message on WhatsApp
+        </a>
+      </div>
+    </form>
+
+    <div id="booking-success" class="hidden py-16 text-center">
+      <p class="font-display text-3xl font-medium tracking-wide uppercase">Request received<span class="text-blood">.</span></p>
+      <p class="mx-auto mt-5 max-w-md text-[0.95rem] leading-relaxed text-bone-dim">
+        Thanks — Sergio will come back to you within a couple of days with
+        availability and next steps. (Demo build: form submissions aren't
+        wired to a backend yet.)
+      </p>
+    </div>
+  </div>
+</section>

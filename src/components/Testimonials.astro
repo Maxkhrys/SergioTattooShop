@@ -1,0 +1,35 @@
+---
+import HighlightIcon from './HighlightIcon.astro';
+import { testimonials } from '../data/site';
+---
+
+<section id="feedback" class="relative bg-ink-soft py-28 md:py-36">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <div class="mb-16 max-w-2xl" data-reveal>
+      <div class="mb-6 flex items-center gap-5">
+        <HighlightIcon icon="bubble" size="sm" />
+        <p class="section-kicker">Feedback</p>
+      </div>
+      <h2 class="section-title text-4xl md:text-5xl">In their words</h2>
+    </div>
+
+    <!-- [PLACEHOLDER: client testimonials — sourced from the Instagram "Feedback" highlight] -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        testimonials.map((t, i) => (
+          <blockquote
+            class="flex flex-col justify-between rounded-sm border border-white/5 bg-ink p-7 transition-colors duration-500 hover:border-blood/30"
+            data-reveal
+            data-reveal-delay={String(i * 0.1)}
+          >
+            <p class="text-[0.92rem] leading-relaxed text-bone-dim italic">“{t.quote}”</p>
+            <footer class="mt-6 border-t border-white/10 pt-4">
+              <p class="font-display text-sm tracking-[0.14em] uppercase">{t.name}</p>
+              <p class="mt-1 text-[0.72rem] tracking-[0.16em] uppercase text-blood">{t.detail}</p>
+            </footer>
+          </blockquote>
+        ))
+      }
+    </div>
+  </div>
+</section>

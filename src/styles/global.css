@@ -1,0 +1,289 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #121212;
+  --color-ink-raised: #181818;
+  --color-blood: #e0202a;
+  --color-blood-dim: #8f141b;
+  --color-bone: #f5f5f5;
+  --color-bone-dim: #a3a3a3;
+  --color-fineline-bg: #f5f3ef;
+  --color-fineline-ink: #1c1a17;
+
+  --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+html {
+  background-color: var(--color-ink);
+  color: var(--color-bone);
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-blood);
+  color: var(--color-ink);
+}
+
+/* ---- Recurring highlight-icon motif: thin red line art in a black circle ---- */
+.highlight-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 50% 40%, #161616 0%, #0c0c0c 70%);
+  border: 1.5px solid rgba(224, 32, 42, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(224, 32, 42, 0.08),
+    0 0 18px rgba(224, 32, 42, 0.18),
+    inset 0 0 14px rgba(224, 32, 42, 0.08);
+}
+
+.highlight-icon svg {
+  stroke: var(--color-blood);
+  filter: drop-shadow(0 0 4px rgba(224, 32, 42, 0.6));
+}
+
+.highlight-icon.is-glowing {
+  animation: icon-pulse 1.4s ease-out 1;
+}
+
+@keyframes icon-pulse {
+  0% {
+    box-shadow:
+      0 0 0 1px rgba(224, 32, 42, 0.08),
+      0 0 4px rgba(224, 32, 42, 0.1);
+  }
+  45% {
+    box-shadow:
+      0 0 0 1px rgba(224, 32, 42, 0.25),
+      0 0 34px rgba(224, 32, 42, 0.5),
+      inset 0 0 20px rgba(224, 32, 42, 0.2);
+  }
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(224, 32, 42, 0.08),
+      0 0 18px rgba(224, 32, 42, 0.18),
+      inset 0 0 14px rgba(224, 32, 42, 0.08);
+  }
+}
+
+/* ---- Section header treatment ---- */
+.section-kicker {
+  font-family: var(--font-display);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 0.75rem;
+  color: var(--color-blood);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+}
+
+/* ---- Red hairline divider with center glow ---- */
+.blood-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(224, 32, 42, 0.7) 50%,
+    transparent
+  );
+}
+
+/* ---- Gallery hover: soft red glow outline + slight scale ---- */
+.gallery-piece {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  background: var(--color-ink-soft);
+  outline: 1px solid rgba(245, 245, 245, 0.06);
+  transition:
+    outline-color 0.5s ease,
+    box-shadow 0.5s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-piece img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-piece:hover {
+  outline-color: rgba(224, 32, 42, 0.6);
+  box-shadow: 0 0 28px rgba(224, 32, 42, 0.22);
+  transform: translateY(-2px);
+}
+
+.gallery-piece:hover img {
+  transform: scale(1.03);
+}
+
+/* ---- Buttons ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.85rem;
+  color: var(--color-bone);
+  background: var(--color-blood);
+  padding: 1rem 2.25rem;
+  border-radius: 2px;
+  transition:
+    box-shadow 0.4s ease,
+    background-color 0.4s ease,
+    transform 0.4s ease;
+}
+
+.btn-primary:hover {
+  background: #f13039;
+  box-shadow: 0 0 30px rgba(224, 32, 42, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.85rem;
+  color: var(--color-bone-dim);
+  border: 1px solid rgba(245, 245, 245, 0.2);
+  padding: 1rem 2.25rem;
+  border-radius: 2px;
+  transition:
+    color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.btn-ghost:hover {
+  color: var(--color-bone);
+  border-color: rgba(224, 32, 42, 0.6);
+  box-shadow: 0 0 18px rgba(224, 32, 42, 0.2);
+}
+
+/* ---- Gallery filter pills ---- */
+.filter-pill {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  color: var(--color-bone-dim);
+  border: 1px solid rgba(245, 245, 245, 0.15);
+  border-radius: 9999px;
+  padding: 0.55rem 1.4rem;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.filter-pill:hover {
+  color: var(--color-bone);
+  border-color: rgba(224, 32, 42, 0.5);
+}
+
+.filter-pill[aria-pressed='true'] {
+  color: var(--color-bone);
+  border-color: var(--color-blood);
+  box-shadow: 0 0 14px rgba(224, 32, 42, 0.3);
+}
+
+/* ---- Form fields ---- */
+.field-label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: var(--color-bone-dim);
+  margin-bottom: 0.5rem;
+}
+
+.field-input {
+  width: 100%;
+  background: var(--color-ink-soft);
+  border: 1px solid rgba(245, 245, 245, 0.12);
+  border-radius: 2px;
+  color: var(--color-bone);
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: rgba(224, 32, 42, 0.7);
+  box-shadow: 0 0 12px rgba(224, 32, 42, 0.2);
+}
+
+.field-input::placeholder {
+  color: #555;
+}
+
+/* ---- Reveal defaults (GSAP takes over; keep content visible without JS) ---- */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal],
+  html.js [data-reveal-slow] {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+
+  html.js [data-reveal-slow] {
+    transform: translateY(24px);
+  }
+}
+
+/* ---- Fine Line register shift ---- */
+.fineline-register {
+  background: var(--color-fineline-bg);
+  color: var(--color-fineline-ink);
+}
+
+.fineline-register .section-kicker {
+  color: var(--color-blood-dim);
+}
+
+.fineline-register .gallery-piece {
+  background: #ece9e3;
+  outline-color: rgba(28, 26, 23, 0.08);
+}
+
+.fineline-register .gallery-piece:hover {
+  outline-color: rgba(143, 20, 27, 0.4);
+  box-shadow: 0 10px 30px rgba(28, 26, 23, 0.12);
+}

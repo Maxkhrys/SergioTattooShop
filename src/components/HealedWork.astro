@@ -1,0 +1,41 @@
+---
+import HighlightIcon from './HighlightIcon.astro';
+import { healedPairs } from '../data/site';
+---
+
+<section id="healed" class="relative bg-ink-soft py-28 md:py-36">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <div class="mb-16 flex flex-col items-start gap-8 md:flex-row md:items-end md:justify-between" data-reveal>
+      <div class="max-w-2xl">
+        <div class="mb-6 flex items-center gap-5">
+          <HighlightIcon icon="heart" size="sm" />
+          <p class="section-kicker">Healed Work</p>
+        </div>
+        <h2 class="section-title text-4xl md:text-5xl">Good on day one.<br />Better proof a year later.</h2>
+      </div>
+      <p class="max-w-md text-[0.95rem] leading-relaxed text-bone-dim">
+        Realism and colour work live or die by how they heal. These are settled,
+        fully healed pieces — the honest version of the portfolio.
+      </p>
+    </div>
+
+    <!-- [PLACEHOLDER: healed work before/after pairs] -->
+    <div class="grid gap-10 lg:grid-cols-3 lg:gap-8">
+      {
+        healedPairs.map((pair, i) => (
+          <figure data-reveal data-reveal-delay={String(i * 0.12)}>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="gallery-piece aspect-square">
+                <img src={pair.fresh} alt={`Fresh tattoo — ${pair.caption}`} class="h-full w-full object-cover" loading="lazy" decoding="async" />
+              </div>
+              <div class="gallery-piece aspect-square">
+                <img src={pair.healed} alt={`Healed tattoo — ${pair.caption}`} class="h-full w-full object-cover" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <figcaption class="mt-4 text-sm text-bone-dim">{pair.caption}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
